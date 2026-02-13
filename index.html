@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ODF — Updated Outreach Strategy | February 2026</title>
+<title>ODF — Updated Strategy | February 2026</title>
 <style>
   :root {
     --bg: #0f0f13;
@@ -116,8 +116,36 @@
     color: var(--text);
   }
 
+  .script-block {
+    border-left: 3px solid var(--green);
+    padding: 16px 24px;
+    margin: 16px 0;
+    background: var(--green-soft);
+    border-radius: 0 8px 8px 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .script-block.amber {
+    border-left-color: var(--amber);
+    background: var(--amber-soft);
+  }
+
+  .script-block.blue {
+    border-left-color: var(--blue);
+    background: var(--blue-soft);
+  }
+
+  .script-block.purple {
+    border-left-color: var(--purple);
+    background: var(--purple-soft);
+  }
+
   ul { padding-left: 20px; margin-bottom: 16px; }
   li { margin-bottom: 8px; font-size: 15px; }
+  ol { padding-left: 20px; margin-bottom: 16px; }
+  ol li { margin-bottom: 8px; font-size: 15px; }
   .divider { height: 1px; background: var(--border); margin: 32px 0; }
 
   .highlight-box {
@@ -143,23 +171,43 @@
     margin-left: 4px;
   }
 
-  .segment-icon {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--purple-soft);
-    border-radius: 10px;
-    font-size: 22px;
-    flex-shrink: 0;
+  .channel-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 3px 10px;
+    margin-right: 6px;
+    letter-spacing: 0.5px;
   }
 
-  .segment-header {
-    display: flex;
+  .channel-email { color: var(--green); background: var(--green-soft); border: 1px solid rgba(34,197,94,0.2); }
+  .channel-linkedin { color: var(--blue); background: var(--blue-soft); border: 1px solid rgba(59,130,246,0.2); }
+  .channel-podcast { color: var(--purple); background: var(--purple-soft); border: 1px solid rgba(139,92,246,0.2); }
+
+  .scenario-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .step-number {
+    display: inline-flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--purple-soft);
+    border: 1px solid rgba(139,92,246,0.3);
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 13px;
+    margin-right: 12px;
+    flex-shrink: 0;
   }
 
   @media print {
@@ -182,10 +230,10 @@
 <!-- ==================== PAGE 1: COVER ==================== -->
 <div class="page">
   <div style="display:flex;flex-direction:column;justify-content:center;min-height:80vh;">
-    <div class="page-label">Updated Outreach Strategy</div>
-    <h1 style="font-size:44px;margin-bottom:24px;">ODF — New Target Audiences<br>& Outreach Plan</h1>
+    <div class="page-label">Updated Strategy</div>
+    <h1 style="font-size:44px;margin-bottom:24px;">ODF -- New Audiences,<br>Outreach Plan & Podcast Script</h1>
     <p class="subtitle" style="max-width:640px;">
-      Based on our last call, I went and did a deep dive into the market. Here are the new audiences I think we should go after, how many people are in each segment, and how I suggest we reach them. I want your input before we start executing.
+      Based on our last call, I did a deep dive into the market. Here are the new audiences, how we reach them, and a podcast script to fix the conversion issue. I want your input before we execute.
     </p>
     <div style="display:flex;gap:12px;margin-top:20px;">
       <span class="badge badge-purple">February 2026</span>
@@ -194,63 +242,58 @@
       <table style="max-width:400px;">
         <tr><td style="color:var(--text-dim);border:none;padding:6px 16px;">Prepared by</td><td style="border:none;padding:6px 16px;font-weight:600;">Jordan Rafealov -- Dopamine Digital</td></tr>
         <tr><td style="color:var(--text-dim);border:none;padding:6px 16px;">For</td><td style="border:none;padding:6px 16px;font-weight:600;">Daniel Lindsey & Spencer Livingston</td></tr>
-        <tr><td style="color:var(--text-dim);border:none;padding:6px 16px;">Based on</td><td style="border:none;padding:6px 16px;">Our February call + market research</td></tr>
       </table>
     </div>
   </div>
 </div>
 
-<!-- ==================== PAGE 2: WHAT I TOOK FROM THE CALL ==================== -->
+<!-- ==================== PAGE 2: WHAT I HEARD ==================== -->
 <div class="page">
   <div class="page-label">From Our Call</div>
-  <h2>What I Heard & Where I Think We Go</h2>
-  <p class="subtitle">Here are the key takeaways from our conversation and the direction I suggest.</p>
+  <h2>What I Heard</h2>
 
   <div class="card" style="border-left:3px solid var(--green);margin-bottom:24px;">
     <h3 style="color:var(--green);margin-bottom:12px;">Your Best Customers Have Clear Patterns</h3>
-    <p style="font-size:15px;line-height:1.7;margin-bottom:16px;">
-      Looking at Bronson ($100K/mo), Wayne ($200K/mo), Luka ($1M/mo), Connor, and Pranav -- there are strong commonalities. They either came from a mastermind/training program or had successful ecommerce experience before finding ODF. They already knew how to sell. They just needed the fulfillment backend.
-    </p>
     <p style="font-size:15px;line-height:1.7;">
-      That tells us exactly who to target: <strong>the people who are training or influencing the next wave of those customers.</strong>
+      Bronson ($100K/mo), Wayne ($200K/mo), Luka ($1M/mo), Connor, Pranav -- they all either came from a mastermind/training program or had successful ecommerce experience before ODF. They knew how to sell. They just needed the fulfillment backend.
+      That tells us who to target: <strong>the people training or influencing the next wave of those customers.</strong>
     </p>
   </div>
 
   <div class="card" style="border-left:3px solid var(--purple);margin-bottom:24px;">
-    <h3 style="color:var(--purple);margin-bottom:12px;">The New Focus: 5 Target Audiences</h3>
-    <p style="font-size:15px;line-height:1.7;margin-bottom:12px;">Based on what you told me, I identified five audiences that align with the types of people who become great ODF customers:</p>
+    <h3 style="color:var(--purple);margin-bottom:12px;">5 New Target Audiences</h3>
     <table style="margin-bottom:0;">
       <thead><tr><th>#</th><th>Audience</th><th>Why</th></tr></thead>
       <tbody>
-        <tr><td>1</td><td><strong>Supplement brand course/mentorship creators</strong></td><td>Their students ARE your customers. Symbiotic relationship.</td></tr>
-        <tr><td>2</td><td><strong>DTC Facebook marketing agencies</strong></td><td>They manage 5-50 DTC brands each. Partner channel gold.</td></tr>
-        <tr><td>3</td><td><strong>DTC TikTok marketing agencies</strong></td><td>TikTok Shop crossed $15.8B in US sales. Health/wellness is top category.</td></tr>
-        <tr><td>4</td><td><strong>Dropshipping course sellers (mid-tier)</strong></td><td>"Dropshipping to brand" narrative. Their students transition to branded products.</td></tr>
-        <tr><td>5</td><td><strong>Shopify coaches</strong></td><td>Teaching store owners to build real brands -- supplements are the #1 category.</td></tr>
+        <tr><td>1</td><td><strong>Supplement course/mentorship creators</strong></td><td>Their students ARE your customers.</td></tr>
+        <tr><td>2</td><td><strong>DTC Facebook marketing agencies</strong></td><td>They manage 5-50 DTC brands each.</td></tr>
+        <tr><td>3</td><td><strong>DTC TikTok marketing agencies</strong></td><td>TikTok Shop = $15.8B US sales. Health is top category.</td></tr>
+        <tr><td>4</td><td><strong>Dropshipping course sellers</strong></td><td>"Dropshipping to brand" -- students transition to branded products.</td></tr>
+        <tr><td>5</td><td><strong>Shopify coaches</strong></td><td>Teaching store owners to build real brands.</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="highlight-box">
-    <h3>Your Top Customers (From Our Call)</h3>
+    <h3>Top Customers (From Our Call)</h3>
     <table style="margin:12px 0 0;">
-      <thead><tr><th>Customer</th><th>Revenue</th><th>Background</th><th>Key Detail</th></tr></thead>
+      <thead><tr><th>Customer</th><th>Revenue</th><th>Background</th><th>Detail</th></tr></thead>
       <tbody>
         <tr><td><strong>Bronson</strong></td><td style="color:var(--green);font-weight:700;">$100K/mo</td><td>Info products, brand building</td><td>#4-5 account, sends referrals, did a <a href="https://youtu.be/Pneu7EfJwMA" style="color:var(--purple);">webinar</a></td></tr>
-        <tr><td><strong>Wayne</strong></td><td style="color:var(--green);font-weight:700;">$200K/mo</td><td>Amazon ecommerce expert</td><td>#1 client this month, high SKUs</td></tr>
+        <tr><td><strong>Wayne</strong></td><td style="color:var(--green);font-weight:700;">$200K/mo</td><td>Amazon ecommerce expert</td><td>#1 this month, high SKUs</td></tr>
         <tr><td><strong>Luka</strong></td><td style="color:var(--green);font-weight:700;">$1M/mo</td><td>TikTok (Moringa Rosabella)</td><td>Came from the right mastermind</td></tr>
         <tr><td><strong>Connor</strong></td><td style="color:var(--text-dim);">#1 last year</td><td>Amazon, high SKUs</td><td>Largest customer in 2025</td></tr>
-        <tr><td><strong>Pranav</strong></td><td style="color:var(--text-dim);">Recent</td><td>Successful ecomm before ODF</td><td>Spencer to send detailed overview</td></tr>
+        <tr><td><strong>Pranav</strong></td><td style="color:var(--text-dim);">Recent</td><td>Successful ecomm before ODF</td><td>Spencer to send overview</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- ==================== PAGE 3: MARKET SIZE OVERVIEW ==================== -->
+<!-- ==================== PAGE 3: MARKET SIZE ==================== -->
 <div class="page">
   <div class="page-label">Market Research</div>
   <h2>How Many People Are in Each Audience</h2>
-  <p class="subtitle">I ran searches across Apollo (B2B database) and LinkedIn Sales Navigator to verify the actual market size. Here is what I found.</p>
+  <p class="subtitle">Verified across Apollo (B2B database) and LinkedIn Sales Navigator.</p>
 
   <div class="card-grid-3" style="margin-bottom:28px;">
     <div class="stat-card" style="border-color:var(--green);">
@@ -262,15 +305,15 @@
       <div class="stat-label">Qualified (after filtering)</div>
     </div>
     <div class="stat-card" style="border-color:var(--amber);">
-      <div class="stat-number amber">$68-78B</div>
-      <div class="stat-label">US Supplement Market</div>
+      <div class="stat-number amber">5</div>
+      <div class="stat-label">Target Audiences</div>
     </div>
   </div>
 
   <div class="card">
     <h3 style="margin-bottom:16px;">Breakdown by Audience</h3>
     <table>
-      <thead><tr><th>Audience</th><th>Apollo Database</th><th>Qualified Estimate</th><th>Priority</th></tr></thead>
+      <thead><tr><th>Audience</th><th>Database Size</th><th>Qualified</th><th>Priority</th></tr></thead>
       <tbody>
         <tr>
           <td><strong>1. Supplement Brand Owners</strong><br><span style="font-size:12px;color:var(--text-dim);">US, 1-50 employees</span></td>
@@ -285,7 +328,7 @@
           <td><span class="badge badge-green">A</span></td>
         </tr>
         <tr>
-          <td><strong>3. Course Creators & Educators</strong><br><span style="font-size:12px;color:var(--text-dim);">Found via Exa.ai semantic search</span></td>
+          <td><strong>3. Course Creators & Educators</strong><br><span style="font-size:12px;color:var(--text-dim);">Exa.ai semantic search</span></td>
           <td style="font-weight:700;">~300-500</td>
           <td>~200-400</td>
           <td><span class="badge badge-green">A</span></td>
@@ -304,39 +347,95 @@
         </tr>
       </tbody>
     </table>
-    <p class="note">Data sources: Apollo People Search API (Segments 1, 2, 4, 5), Exa.ai neural search (Segment 3). "Qualified" means they likely need fulfillment/private label, are not vertically integrated, and are active in the market.</p>
-  </div>
-
-  <div class="highlight-box">
-    <h3>Key Market Context</h3>
-    <ul style="margin-bottom:0;">
-      <li>76% of Americans take supplements daily</li>
-      <li>100,000+ supplement products on the market (FDA)</li>
-      <li>Private label growing to ~50% market share by 2030</li>
-      <li>TikTok Shop US: $15.8B in 2025 -- 108% growth year over year. Health/wellness is a top category.</li>
-    </ul>
+    <p class="note">Sources: Apollo People Search API (Segments 1, 2, 4, 5), Exa.ai neural search (Segment 3).</p>
   </div>
 </div>
 
-<!-- ==================== PAGE 4: SEGMENT 1 — SUPPLEMENT COURSE CREATORS ==================== -->
+<!-- ==================== PAGE 4: CHANNEL STRATEGY ==================== -->
+<div class="page">
+  <div class="page-label">Channel Strategy</div>
+  <h2>Who Gets What Channel</h2>
+  <p class="subtitle">Clear split: LinkedIn for high-value relationships. Cold email for volume. Podcast for top prospects only.</p>
+
+  <div class="card-grid" style="margin-bottom:24px;">
+    <div class="card" style="border-top:3px solid var(--blue);margin-bottom:0;">
+      <h3 style="color:var(--blue);">LinkedIn -- Audiences 1, 2, 3</h3>
+      <div style="text-align:center;padding:16px 0;">
+        <div style="font-size:42px;font-weight:800;color:var(--blue);">30</div>
+        <div style="font-size:14px;color:var(--text-dim);">connections per day / ~600 per month</div>
+      </div>
+      <ul style="margin-bottom:0;">
+        <li><strong>Course creators</strong> -- relationship-first, personal outreach</li>
+        <li><strong>DTC Facebook agencies</strong> -- decision makers at agency level</li>
+        <li><strong>DTC TikTok agencies</strong> -- same approach, TikTok niche</li>
+      </ul>
+      <p class="note">These are partnership targets. Relationships matter more than volume here.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green);margin-bottom:0;">
+      <h3 style="color:var(--green);">Cold Email -- All 5 Audiences</h3>
+      <div style="text-align:center;padding:16px 0;">
+        <div style="font-size:42px;font-weight:800;color:var(--green);">540</div>
+        <div style="font-size:14px;color:var(--text-dim);">emails per day / ~11,000 per month</div>
+      </div>
+      <ul style="margin-bottom:0;">
+        <li><strong>18 warmed domains</strong> already configured for ODF</li>
+        <li>30 emails per domain per day (safe limit)</li>
+        <li>All emails verified before sending</li>
+        <li>AI handling replies 24/7</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="border-top:3px solid var(--purple);">
+    <h3 style="color:var(--purple);">Podcast -- Top Prospects from Audiences 1, 2, 3</h3>
+    <div style="display:flex;align-items:center;gap:16px;margin:12px 0;">
+      <div style="text-align:center;min-width:100px;">
+        <div style="font-size:32px;font-weight:800;color:var(--purple);">15-20</div>
+        <div style="font-size:12px;color:var(--text-dim);">invites per month</div>
+      </div>
+      <div>
+        <p style="font-size:15px;">Reserved for the best-fit targets. Podcast invites get 5-10x higher response rates than cold email alone. These are the people worth building a real relationship with.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top:24px;">
+    <h3>Summary</h3>
+    <table style="margin:8px 0 0;">
+      <thead><tr><th>Channel</th><th>Daily</th><th>Monthly</th><th>Audiences</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Cold Email</strong></td>
+          <td>540</td>
+          <td style="font-weight:700;color:var(--green);">~11,000</td>
+          <td>All 5 -- verified emails from Apollo</td>
+        </tr>
+        <tr>
+          <td><strong>LinkedIn</strong></td>
+          <td>30</td>
+          <td style="font-weight:700;color:var(--blue);">~600</td>
+          <td>Audiences 1-3 only (high-value targets)</td>
+        </tr>
+        <tr>
+          <td><strong>Podcast</strong></td>
+          <td>--</td>
+          <td style="font-weight:700;color:var(--purple);">15-20</td>
+          <td>Top prospects from Audiences 1-3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5: AUDIENCE 1 ==================== -->
 <div class="page">
   <div class="page-label">Audience 1 -- Highest Priority</div>
   <h2>Supplement Brand Course/Mentorship Creators</h2>
-  <p class="subtitle">Their students ARE ODF's customers. One partnership here could mean a steady stream of pre-educated buyers who already want to launch a supplement brand.</p>
-
-  <div class="card-grid-3">
-    <div class="stat-card" style="border-color:var(--green);">
-      <div class="stat-number green">30-40%</div>
-      <div class="stat-label">Expected Acceptance Rate</div>
-    </div>
-    <div class="stat-card" style="border-color:var(--purple);">
-      <div class="stat-number purple">15-20</div>
-      <div class="stat-label">People to Reach Out To</div>
-    </div>
-    <div class="stat-card" style="border-color:var(--blue);">
-      <div class="stat-number blue">Highest</div>
-      <div class="stat-label">Conversion Potential</div>
-    </div>
+  <p style="font-size:15px;color:var(--text-dim);margin-bottom:8px;">Their students ARE ODF's customers. One partnership = a steady stream of pre-educated buyers.</p>
+  <div style="margin-bottom:24px;">
+    <span class="channel-tag channel-linkedin">LinkedIn</span>
+    <span class="channel-tag channel-email">Cold Email</span>
+    <span class="channel-tag channel-podcast">Podcast</span>
   </div>
 
   <div class="card">
@@ -344,9 +443,9 @@
     <table>
       <thead><tr><th>Name</th><th>Business</th><th>Why They Fit</th><th>Source</th></tr></thead>
       <tbody>
-        <tr><td><strong>Dino Scrivani</strong></td><td>Dinosaur Nutrition USA</td><td>"Private Label Health Supplement Blueprint" on Teachable. 1-on-1 coaching. Decade R&D.</td><td><span class="source-tag">Teachable</span></td></tr>
-        <tr><td><strong>Dr. Jim Reynante</strong></td><td>Independent</td><td>"7 Steps to Start a Supplement Company" on Udemy. Teaches home-based supplement business.</td><td><span class="source-tag">Udemy</span></td></tr>
-        <tr><td><strong>Brian Yam</strong></td><td>Blue Ocean Regulatory</td><td>20+ years compliance. "How to Start Your Own Supplement Company" course + YouTube + mentorship.</td><td><span class="source-tag">YouTube</span></td></tr>
+        <tr><td><strong>Dino Scrivani</strong></td><td>Dinosaur Nutrition USA</td><td>"Private Label Health Supplement Blueprint" on Teachable. 1-on-1 coaching.</td><td><span class="source-tag">Teachable</span></td></tr>
+        <tr><td><strong>Dr. Jim Reynante</strong></td><td>Independent</td><td>"7 Steps to Start a Supplement Company" on Udemy.</td><td><span class="source-tag">Udemy</span></td></tr>
+        <tr><td><strong>Brian Yam</strong></td><td>Blue Ocean Regulatory</td><td>20+ years compliance. "How to Start Your Own Supplement Company" course + YouTube.</td><td><span class="source-tag">YouTube</span></td></tr>
         <tr><td><strong>Justin Devonshire</strong></td><td>Fitness Business Blueprint</td><td>"Launch Your Supplement Brand in 8 Steps" mini-course. Runs podcast.</td><td><span class="source-tag">Podcast</span></td></tr>
         <tr><td><strong>Bobby Hewitt</strong></td><td>Independent</td><td>13+ years supplement marketing. Group coaching + YouTube.</td><td><span class="source-tag">YouTube</span></td></tr>
         <tr><td><strong>Private Label Masters</strong></td><td>Skool Community</td><td>$250/month community. 5-stage process for 7-figure brands.</td><td><span class="source-tag">Skool</span></td></tr>
@@ -355,31 +454,18 @@
     </table>
   </div>
 
-  <div class="highlight-box">
-    <h3>Why This Audience Is the Best Fit</h3>
-    <p style="font-size:15px;margin-top:8px;">The relationship is symbiotic: the course creator teaches the strategy, ODF handles the execution. ODF becomes the "recommended partner" inside their course -- making the course more valuable because students get a vetted fulfillment partner instead of random manufacturers. ODF gets a stream of pre-educated, motivated new customers.</p>
-  </div>
+  <p class="note">The relationship is symbiotic: the course creator teaches strategy, ODF handles execution. ODF becomes the "recommended partner" inside their course -- making the course more valuable because students get a vetted fulfillment partner.</p>
 </div>
 
-<!-- ==================== PAGE 5: SEGMENT 2 — DTC FACEBOOK AGENCIES ==================== -->
+<!-- ==================== PAGE 6: AUDIENCE 2 ==================== -->
 <div class="page">
   <div class="page-label">Audience 2</div>
   <h2>DTC Facebook Marketing Agencies</h2>
-  <p class="subtitle">Each agency manages 5-50 DTC brands. One good partnership here means multiple brand referrals.</p>
-
-  <div class="card-grid-3">
-    <div class="stat-card" style="border-color:var(--green);">
-      <div class="stat-number green">15-20%</div>
-      <div class="stat-label">Expected Acceptance Rate</div>
-    </div>
-    <div class="stat-card" style="border-color:var(--purple);">
-      <div class="stat-number purple">40-50</div>
-      <div class="stat-label">People to Reach Out To</div>
-    </div>
-    <div class="stat-card" style="border-color:var(--blue);">
-      <div class="stat-number blue">High</div>
-      <div class="stat-label">Conversion Potential</div>
-    </div>
+  <p style="font-size:15px;color:var(--text-dim);margin-bottom:8px;">Each agency manages 5-50 DTC brands. One good partnership = multiple brand referrals.</p>
+  <div style="margin-bottom:24px;">
+    <span class="channel-tag channel-linkedin">LinkedIn</span>
+    <span class="channel-tag channel-email">Cold Email</span>
+    <span class="channel-tag channel-podcast">Podcast</span>
   </div>
 
   <div class="card">
@@ -387,40 +473,28 @@
     <table>
       <thead><tr><th>Name</th><th>Agency</th><th>Why They Fit</th><th>Source</th></tr></thead>
       <tbody>
-        <tr><td><strong>Forge Digital</strong></td><td>Forge Digital Marketing</td><td>CEO built career at Optimum Nutrition/Rivalus. Specializes in health/nutrition supplement brands $500K-$20M.</td><td><span class="source-tag">LinkedIn</span></td></tr>
-        <tr><td><strong>Steve Weiss</strong></td><td>MuteSix</td><td>Top DTC agency. Meta + TikTok campaigns for fitness, nutrition, beauty brands.</td><td><span class="source-tag">Case Study</span></td></tr>
-        <tr><td><strong>Evestar</strong></td><td>Evestar</td><td>Founded by former JetSmarter co-founder. 100+ DTC brands, $100M+ ad spend managed. Health/wellness focus.</td><td><span class="source-tag">LinkedIn</span></td></tr>
-        <tr><td><strong>CakeCommerce</strong></td><td>CakeCommerce</td><td>Female-founded. Paid media + email for wellness/beauty DTC brands.</td><td><span class="source-tag">Web</span></td></tr>
-        <tr><td><strong>Cave.</strong></td><td>Cave Agency</td><td>12 years scaling CPG/ecommerce. Niche in health and wellness.</td><td><span class="source-tag">Web</span></td></tr>
-        <tr><td><strong>Cat Howell</strong></td><td>Eight Loop Social</td><td>17 staff, $14M sales since 2017. FATC community of 100K+ members.</td><td><span class="source-tag">FATC</span></td></tr>
-        <tr><td><strong>Common Thread Collective</strong></td><td>CTC</td><td>Behind the Ecommerce Playbook podcast. Agency + own DTC brands.</td><td><span class="source-tag">Podcast</span></td></tr>
+        <tr><td><strong>Forge Digital</strong></td><td>Forge Digital Marketing</td><td>CEO built career at Optimum Nutrition/Rivalus. Health/nutrition supplement brands $500K-$20M.</td><td><span class="source-tag">LinkedIn</span></td></tr>
+        <tr><td><strong>Steve Weiss</strong></td><td>MuteSix</td><td>Top DTC agency. Meta + TikTok for fitness, nutrition, beauty.</td><td><span class="source-tag">Case Study</span></td></tr>
+        <tr><td><strong>Evestar</strong></td><td>Evestar</td><td>100+ DTC brands, $100M+ ad spend. Health/wellness focus.</td><td><span class="source-tag">LinkedIn</span></td></tr>
+        <tr><td><strong>CakeCommerce</strong></td><td>CakeCommerce</td><td>Female-founded. Paid media + email for wellness/beauty DTC.</td><td><span class="source-tag">Web</span></td></tr>
+        <tr><td><strong>Cave.</strong></td><td>Cave Agency</td><td>12 years scaling CPG/ecommerce. Health and wellness niche.</td><td><span class="source-tag">Web</span></td></tr>
+        <tr><td><strong>Cat Howell</strong></td><td>Eight Loop Social</td><td>$14M sales since 2017. FATC community of 100K+ members.</td><td><span class="source-tag">FATC</span></td></tr>
+        <tr><td><strong>Common Thread Collective</strong></td><td>CTC</td><td>Ecommerce Playbook podcast. Agency + own DTC brands.</td><td><span class="source-tag">Podcast</span></td></tr>
         <tr><td><strong>SevenAtoms</strong></td><td>SevenAtoms</td><td>Google Premier Partner + Facebook Marketing Partner.</td><td><span class="source-tag">Google</span></td></tr>
       </tbody>
     </table>
   </div>
-
-  <p class="note">These agencies do not control fulfillment. When their clients launch supplement lines, they need a fulfillment partner. One good agency partnership = 5-10 brand referrals.</p>
 </div>
 
-<!-- ==================== PAGE 6: SEGMENT 3 — TIKTOK AGENCIES ==================== -->
+<!-- ==================== PAGE 7: AUDIENCE 3 ==================== -->
 <div class="page">
   <div class="page-label">Audience 3</div>
   <h2>DTC TikTok Marketing Agencies</h2>
-  <p class="subtitle">TikTok Shop crossed $15.82B in US sales in 2025 -- 108% YoY growth. Health and wellness is a top category. These agencies are driving that growth.</p>
-
-  <div class="card-grid-3">
-    <div class="stat-card" style="border-color:var(--green);">
-      <div class="stat-number green">15-20%</div>
-      <div class="stat-label">Expected Acceptance Rate</div>
-    </div>
-    <div class="stat-card" style="border-color:var(--purple);">
-      <div class="stat-number purple">30-40</div>
-      <div class="stat-label">People to Reach Out To</div>
-    </div>
-    <div class="stat-card" style="border-color:var(--blue);">
-      <div class="stat-number blue">High</div>
-      <div class="stat-label">Conversion Potential</div>
-    </div>
+  <p style="font-size:15px;color:var(--text-dim);margin-bottom:8px;">TikTok Shop = $15.82B US sales in 2025 (108% YoY). Health/wellness is a top category.</p>
+  <div style="margin-bottom:24px;">
+    <span class="channel-tag channel-linkedin">LinkedIn</span>
+    <span class="channel-tag channel-email">Cold Email</span>
+    <span class="channel-tag channel-podcast">Podcast</span>
   </div>
 
   <div class="card">
@@ -430,27 +504,29 @@
       <tbody>
         <tr><td><strong>Jonathan Snow</strong></td><td>The Snow Agency / Avenue Z</td><td>TikTok "Alpha Agency," 1 of 8 "Shop Ads Experts." $1B+ revenue for 200+ DTC brands.</td><td><span class="source-tag">TikTok Partners</span></td></tr>
         <tr><td><strong>Uptickk</strong></td><td>Uptickk</td><td>TikTok-first agency. One of TikTok's initial beta partner agencies.</td><td><span class="source-tag">TikTok Partners</span></td></tr>
-        <tr><td><strong>Blue Wheel Media</strong></td><td>Blue Wheel</td><td>Manages $1B+ in ecommerce revenue. CPG brand: 722% revenue increase.</td><td><span class="source-tag">Case Study</span></td></tr>
-        <tr><td><strong>House of Marketers</strong></td><td>House of Marketers</td><td>Founded by early TikTok employees. Deep platform knowledge.</td><td><span class="source-tag">LinkedIn</span></td></tr>
-        <tr><td><strong>Max Benator</strong></td><td>Orca</td><td>Services Estee Lauder, Samsung, Liquid IV. Enterprise TikTok agency.</td><td><span class="source-tag">LinkedIn</span></td></tr>
-        <tr><td><strong>Favoured</strong></td><td>Favoured</td><td>Co-founded by former Apple marketing lead. TikTok + paid social.</td><td><span class="source-tag">Web</span></td></tr>
+        <tr><td><strong>Blue Wheel Media</strong></td><td>Blue Wheel</td><td>$1B+ in ecommerce revenue. CPG brand: 722% revenue increase.</td><td><span class="source-tag">Case Study</span></td></tr>
+        <tr><td><strong>House of Marketers</strong></td><td>House of Marketers</td><td>Founded by early TikTok employees.</td><td><span class="source-tag">LinkedIn</span></td></tr>
+        <tr><td><strong>Max Benator</strong></td><td>Orca</td><td>Estee Lauder, Samsung, Liquid IV. Enterprise TikTok agency.</td><td><span class="source-tag">LinkedIn</span></td></tr>
+        <tr><td><strong>Favoured</strong></td><td>Favoured</td><td>Co-founded by former Apple marketing lead.</td><td><span class="source-tag">Web</span></td></tr>
         <tr><td><strong>Tuke Marketing</strong></td><td>tktk.com</td><td>Full-service TikTok marketing including live shopping.</td><td><span class="source-tag">Web</span></td></tr>
       </tbody>
     </table>
   </div>
 
-  <p class="note">Luka (Moringa Rosabella) is already doing $1M/month on TikTok with ODF. That is a powerful proof point for this audience -- ODF can handle viral-level volume.</p>
+  <p class="note">Luka (Moringa Rosabella) is doing $1M/month on TikTok with ODF. Proof that ODF can handle viral-level volume.</p>
 </div>
 
-<!-- ==================== PAGE 7: SEGMENTS 4-5 ==================== -->
+<!-- ==================== PAGE 8: AUDIENCES 4-5 ==================== -->
 <div class="page">
   <div class="page-label">Audiences 4 & 5</div>
   <h2>Dropshipping Course Sellers & Shopify Coaches</h2>
-  <p class="subtitle">Large audiences whose students are ODF's end customers. The "dropshipping to brand" narrative is the bridge.</p>
+  <p style="font-size:15px;color:var(--text-dim);margin-bottom:8px;">Large audiences whose students are ODF's end customers.</p>
+  <div style="margin-bottom:24px;">
+    <span class="channel-tag channel-email">Cold Email Only</span>
+  </div>
 
   <div class="card" style="border-left:3px solid var(--amber);margin-bottom:24px;">
-    <h3 style="color:var(--amber);margin-bottom:12px;">Audience 4: Dropshipping Course Sellers (Mid-Tier)</h3>
-    <p style="font-size:14px;color:var(--text-dim);margin-bottom:16px;">Target: 25-30 outreach | 10-15% expected acceptance</p>
+    <h3 style="color:var(--amber);margin-bottom:12px;">Audience 4: Dropshipping Course Sellers</h3>
     <table>
       <thead><tr><th>Name</th><th>Platform</th><th>Audience</th><th>Source</th></tr></thead>
       <tbody>
@@ -463,120 +539,354 @@
         <tr><td><strong>Alex J Crumpton</strong></td><td>YouTube</td><td>13.7K subs. Private label focus.</td><td><span class="source-tag">YouTube</span></td></tr>
       </tbody>
     </table>
-    <p class="note">Apollo API confirms 18,735 dropship/DTC/Shopify founders in database (US, 1-50 employees). Even at 10% supplement-relevant, that is 1,800+ reachable prospects in this segment alone.</p>
   </div>
 
   <div class="card" style="border-left:3px solid var(--blue);">
     <h3 style="color:var(--blue);margin-bottom:12px;">Audience 5: Shopify Coaching Programs</h3>
-    <p style="font-size:14px;color:var(--text-dim);margin-bottom:16px;">Target: 20-25 outreach | 10-15% expected acceptance</p>
     <table>
       <thead><tr><th>Name</th><th>Platform</th><th>Audience</th><th>Source</th></tr></thead>
       <tbody>
-        <tr><td><strong>Sarah Chrisp (Wholesale Ted)</strong></td><td>YouTube</td><td>No-nonsense teaching style. Design tips to marketing.</td><td><span class="source-tag">YouTube</span></td></tr>
+        <tr><td><strong>Sarah Chrisp (Wholesale Ted)</strong></td><td>YouTube</td><td>No-nonsense teaching. Design tips to marketing.</td><td><span class="source-tag">YouTube</span></td></tr>
         <tr><td><strong>Peter Pru</strong></td><td>Ecommerce Empire Builders</td><td>Funnels, branding, building assets.</td><td><span class="source-tag">YouTube</span></td></tr>
-        <tr><td><strong>Franklin Hatchett</strong></td><td>YouTube</td><td>Decade of teaching. Dropshipping + affiliate + traffic generation.</td><td><span class="source-tag">YouTube</span></td></tr>
+        <tr><td><strong>Franklin Hatchett</strong></td><td>YouTube</td><td>Decade of teaching. Dropshipping + affiliate + traffic.</td><td><span class="source-tag">YouTube</span></td></tr>
         <tr><td><strong>eCommerce Training Academy</strong></td><td>Online Course</td><td>Comprehensive coaching: store launch to $5K/month.</td><td><span class="source-tag">Web</span></td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- ==================== PAGE 8: OUTREACH CAPACITY ==================== -->
+<!-- ==================== PAGE 9: PODCAST OPENING FRAME ==================== -->
 <div class="page">
-  <div class="page-label">Outreach Capacity</div>
-  <h2>What We Can Actually Send</h2>
-  <p class="subtitle">We already have the infrastructure live and warmed. Here is the daily capacity across both channels.</p>
+  <div class="page-label">Podcast Script</div>
+  <h2>Opening Frame for Guests</h2>
+  <p class="subtitle">This sets the tone for the entire recording and makes the transition at the end natural. Say this before you hit record or right after you start.</p>
 
-  <div class="card-grid" style="margin-bottom:28px;">
-    <div class="card" style="border-top:3px solid var(--green);margin-bottom:0;">
-      <h3>Cold Email</h3>
-      <div style="text-align:center;padding:20px 0;">
-        <div style="font-size:48px;font-weight:800;color:var(--green);">540</div>
-        <div style="font-size:14px;color:var(--text-dim);">emails per day</div>
-      </div>
-      <ul>
-        <li><strong>18 warmed domains</strong> already configured for ODF</li>
-        <li>30 emails per domain per day (safe sending limit)</li>
-        <li>AI auto-reply handling responses 24/7</li>
-        <li>All verified through email verification before sending</li>
-      </ul>
-    </div>
-    <div class="card" style="border-top:3px solid var(--blue);margin-bottom:0;">
-      <h3>LinkedIn</h3>
-      <div style="text-align:center;padding:20px 0;">
-        <div style="font-size:48px;font-weight:800;color:var(--blue);">50</div>
-        <div style="font-size:14px;color:var(--text-dim);">connections per day</div>
-      </div>
-      <ul>
-        <li><strong>More focused outreach</strong> -- targeting decision makers specifically</li>
-        <li>Multi-account automation to avoid limits</li>
-        <li>Connection request + value-first follow-up</li>
-        <li>Best for Audiences 1-3 where relationships matter</li>
-      </ul>
+  <div class="card" style="border-left:3px solid var(--purple);margin-bottom:24px;">
+    <h3 style="margin-bottom:16px;">Step 1: Ask Permission to Set Context</h3>
+    <div class="script-block purple">
+      "Do you mind if I give you a quick bit of context about the podcast before I dive into the questions?"
     </div>
   </div>
 
-  <div class="card" style="border:2px solid var(--purple);">
-    <h3 style="margin-bottom:16px;">Monthly Capacity</h3>
-    <table style="margin-bottom:0;">
-      <thead><tr><th>Channel</th><th>Daily</th><th>Monthly</th><th>Targeting</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong>Cold Email</strong></td>
-          <td>540/day</td>
-          <td style="font-weight:700;color:var(--green);">~11,000/month</td>
-          <td>All 5 audiences -- verified emails from Apollo</td>
-        </tr>
-        <tr>
-          <td><strong>LinkedIn</strong></td>
-          <td>50/day</td>
-          <td style="font-weight:700;color:var(--blue);">~1,000/month</td>
-          <td>Focused on Audiences 1-3 (highest-value targets)</td>
-        </tr>
-        <tr>
-          <td><strong>Podcast Invites</strong></td>
-          <td>--</td>
-          <td style="font-weight:700;color:var(--purple);">130-165 total</td>
-          <td>Top prospects from each audience, reserved for best fits</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="card" style="border-left:3px solid var(--green);margin-bottom:24px;">
+    <h3 style="margin-bottom:16px;">Step 2: Who You Are & Why</h3>
+    <div class="script-block">
+      "So I run a supplement fulfillment company called On Demand Fulfillment, and we're reaching out to leaders in the marketing space because -- quite selfishly <em>[laugh]</em> -- I'd love to gather insights from people like you that I can share with our customers. Hopefully we can make a connection that benefits both of us. Maybe you have some clients that could use our services, and in return, we're running this podcast to give back."
+    </div>
   </div>
 
-  <div class="highlight-box">
-    <p style="font-size:15px;">With 60,000+ people in the database and a capacity of 540 cold emails per day, we have enough market depth to run focused campaigns for months without running out of prospects. Conservatively, I think this approach is going to work much better than what we were doing before.</p>
+  <div class="card" style="border-left:3px solid var(--blue);margin-bottom:24px;">
+    <h3 style="margin-bottom:16px;">Step 3: Today Is About Them + Content Promise</h3>
+    <div class="script-block blue">
+      "Today is all about you. I'm going to ask you about five or six questions -- just a simple conversation. At the end, we're going to clip up the podcast, pick out the most interesting parts where you say really interesting things, edit them, caption them, and deliver those to you so you can share them on LinkedIn and look like an authority. That's the idea."
+    </div>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--amber);">
+    <h3 style="margin-bottom:16px;">Step 4: Plant the Seed, No Pressure</h3>
+    <div class="script-block amber">
+      "If I think there's a fit or if it makes sense, I can talk about what that looks like at the end, but today is about you. Does that sound fair enough?"
+    </div>
+    <p class="note" style="margin-top:12px;">This is important -- it gets verbal agreement that you'll have a moment at the end to pitch, while keeping zero pressure during the interview.</p>
   </div>
 </div>
 
-<!-- ==================== PAGE 9: WHAT I NEED FROM YOU ==================== -->
+<!-- ==================== PAGE 10: PODCAST QUESTIONS ==================== -->
+<div class="page">
+  <div class="page-label">Podcast Script</div>
+  <h2>Interview Questions for Agency Owners</h2>
+  <p class="subtitle">5-6 core questions. Adjust based on the guest. The goal is a genuine, interesting conversation that also surfaces opportunities for transition.</p>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">1</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Welcome & Intro</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "Welcome to the podcast everyone, today we're joined by [Name] who's the founder of [Agency]. Welcome to the podcast [Name] -- why don't you start by telling us a little about yourself and [Agency]?"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">2</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Who They Serve</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "So who do you serve? Who's your ideal client?"
+        </div>
+        <p class="note">Listen for: health/wellness brands, supplement brands, DTC brands -- anything that reveals a connection to ODF's world.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">3</span>
+      <div>
+        <h3 style="margin-bottom:4px;">AI & Innovation</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "Are you doing anything interesting with AI in your agency right now?"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">4</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Biggest Struggles</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "What do you think have been the biggest struggles you've had to overcome in the last 12 months?"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">5</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Their Own Marketing</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "What sort of marketing do you run for yourselves? How do you fill your own top of funnel?"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">6</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Time Machine</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "If you could go back in a time machine and restart your journey, what would you do differently?"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;">
+      <span class="step-number">7</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Magic Wand</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "If you had a magic wand and you could wave it over one big problem in the business right now and solve it just like that -- what would that be?"
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:flex-start;gap:12px;">
+      <span class="step-number" style="background:var(--green-soft);border-color:rgba(34,197,94,0.3);color:var(--green);">8</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Wrap Up (On Camera)</h3>
+        <div class="script-block" style="margin:8px 0 0;">
+          "Thanks for watching everyone, see you on the next one."
+        </div>
+        <p class="note">Then stop recording and go straight into the post-podcast transition.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 11: POST-PODCAST TRANSITIONS ==================== -->
+<div class="page">
+  <div class="page-label">After the Recording</div>
+  <h2>Post-Podcast Transitions</h2>
+  <p class="subtitle">Three scenarios based on what the guest revealed during the interview. Pick the one that fits and go straight into it after the recording stops.</p>
+
+  <div class="card" style="border-left:3px solid var(--green);margin-bottom:24px;">
+    <span class="scenario-label" style="color:var(--green);background:var(--green-soft);">Scenario A -- Referral Partner (Agency Owner)</span>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;">Use when: They run an agency with clients who could be ODF customers.</p>
+    <div class="script-block">
+      "Hey, that was amazing. Thanks so much for that. Listen, you mentioned you're working with [specific thing they said -- TikTok brands, DTC clients, etc]. One of our best customers is a TikTok influencer who went from zero to $200,000 a month in 60 days. I don't know if it'd be a fit or not, but if you're coming across people like that and you refer them to us, we have a really profitable referral program. I'd love to show you what that looks like -- would you be totally against jumping on another call? No pressure."
+    </div>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--blue);margin-bottom:24px;">
+    <span class="scenario-label" style="color:var(--blue);background:var(--blue-soft);">Scenario B -- Agency Owner Interested in Launching Own Brand</span>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;">Use when: They mentioned wanting new income streams, or they clearly have the skills to sell but haven't launched their own thing yet. Can be a callback to something they said during the interview.</p>
+    <div class="script-block blue">
+      "You mentioned you're always looking for different streams of income because marketing is a superpower you've mastered. Some of our best clients are actually marketing agency owners who've gone off and built their own supplement brands. Completely free, no obligation -- I'd love to show you a case study of one of our best clients and how he broke down the 10 steps he used to go from zero to $200K a month in 60 days. He's never published that anywhere online. I don't know if that's a fit, but I'd love to jump on another call and walk you through it."
+    </div>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--amber);margin-bottom:24px;">
+    <span class="scenario-label" style="color:var(--amber);background:var(--amber-soft);">Scenario C -- Direct Prospect (Supplement Brand Owner)</span>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;">Use when: They already own or are launching a supplement brand and could use fulfillment directly.</p>
+    <div class="script-block amber">
+      "Based on what you shared about [their specific situation], I think there might be something that could really help. We put together [specific offer -- e.g. a 30-day launch roadmap / fulfillment audit / cost comparison] that shows you exactly [specific outcome in 30 days]. Would you be against me walking you through how that works on another call?"
+    </div>
+    <p class="note">The offer needs to be a specific, tangible outcome -- not "save money" or "make more money." Something like "we'll show you how to go from idea to first shipment in 30 days" or "we'll map out your first 5 SKUs and show you exact margins."</p>
+  </div>
+
+  <div class="highlight-box" style="border-color:rgba(239,68,68,0.4);background:var(--red-soft);">
+    <h3 style="color:var(--red);">BAMFAM -- Book A Meeting From A Meeting</h3>
+    <p style="font-size:15px;margin-top:8px;margin-bottom:12px;"><strong>This is a non-negotiable.</strong> Every podcast that has a positive signal should end with a booked next meeting. Do not let them leave without confirming a time.</p>
+    <div class="script-block" style="border-left-color:var(--red);background:var(--red-soft);">
+      "Alright perfect, I'll book that in after this call and I'll see you on [day] at [time]."
+    </div>
+    <p class="note">Confirm the time verbally. Do NOT try to book it live on the call. See next page for the booking process.</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE 12: BOOKING PROCESS ==================== -->
+<div class="page">
+  <div class="page-label">Operations</div>
+  <h2>Post-Call Booking Process</h2>
+  <p class="subtitle">After the podcast ends and a next call is confirmed, here is how we handle the booking so nothing falls through the cracks.</p>
+
+  <div class="card" style="margin-bottom:24px;">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:24px;">
+      <span class="step-number">1</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Confirm the Time Verbally</h3>
+        <p style="font-size:15px;">On the call, just agree on a day and time. Don't fumble with calendar links or booking pages live.</p>
+        <div class="script-block" style="margin-top:8px;">
+          "Alright perfect, I'll book that in after this call and I'll see you on Tuesday at 6pm."
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:24px;">
+      <span class="step-number">2</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Go to ClickUp & Tag Angela</h3>
+        <p style="font-size:15px;">Create a task or comment in ClickUp with the details:</p>
+        <div class="script-block" style="margin-top:8px;">
+          "Hey Angela, had a great call with [Name] from [Company]. We booked in a strategy call for [Day, Date] at [Time]. Can you please book that in for me?"
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:12px;">
+      <span class="step-number">3</span>
+      <div>
+        <h3 style="margin-bottom:4px;">Angela Books It Properly</h3>
+        <p style="font-size:15px;">Angela will:</p>
+        <ul style="margin-top:8px;margin-bottom:0;">
+          <li>Book the meeting using one of our email addresses</li>
+          <li>CC Spencer so you can see the full pipeline</li>
+          <li>Handle confirmations and follow-ups if they reschedule</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Why This Matters</h3>
+    <p style="font-size:15px;margin-top:8px;">Right now, podcast guests are not converting because the transition is messy -- no clear frame at the start, no smooth handoff at the end, and no system to make sure the follow-up actually happens. This process fixes all three.</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE 13: PARTNER ONE-PAGER ==================== -->
+<div class="page">
+  <div class="page-label">Assets to Build</div>
+  <h2>Referral Partner One-Pager</h2>
+  <p class="subtitle">Here are the bullet points for the partner one-pager. Please approve these and we will design and expand it into a polished document.</p>
+
+  <div class="card" style="border-left:3px solid var(--purple);margin-bottom:24px;">
+    <h3 style="color:var(--purple);margin-bottom:16px;">Proposed One-Pager Sections</h3>
+    <ul>
+      <li><strong>What ODF Does</strong> -- Done-for-you supplement fulfillment. FDA/GMP compliant. Brands launch in 30 days. 300+ brands served.</li>
+      <li><strong>Why Partner With ODF</strong> -- Your clients/students get a vetted fulfillment partner. You earn passive recurring income on every referral.</li>
+      <li><strong>Commission Structure</strong> -- 25-35% of gross profit per referred customer (recurring, not one-time).</li>
+      <li><strong>Activation Bounty</strong> -- $250-500 per new customer who starts selling.</li>
+      <li><strong>How It Works</strong> -- Refer someone to ODF. They sign up. ODF handles everything (formulation, manufacturing, fulfillment, shipping). You earn monthly.</li>
+      <li><strong>Partner Tiers</strong> -- Volume-based rewards for top referrers.</li>
+      <li><strong>Proof</strong> -- Case study: "[Customer] went from $0 to $200K/month in 60 days using ODF."</li>
+      <li><strong>How to Get Started</strong> -- Contact Spencer or fill out partner form.</li>
+      <li><strong>Support</strong> -- Dedicated partner manager for questions and onboarding.</li>
+    </ul>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--amber);">
+    <h3 style="color:var(--amber);margin-bottom:12px;">Questions Before We Build This</h3>
+    <ul style="margin-bottom:0;">
+      <li>Are the commission numbers right? (25-35% gross profit + $250-500 bounty)</li>
+      <li>Do you want partner tiers, or keep it flat for now?</li>
+      <li>Which case study should we feature? (I suggest the TikTok influencer $0 to $200K story)</li>
+      <li>Should the "How to Get Started" point to Spencer directly, a form, or both?</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== PAGE 14: CASE STUDY TEMPLATE ==================== -->
+<div class="page">
+  <div class="page-label">Assets to Build</div>
+  <h2>Case Study Interview Template</h2>
+  <p class="subtitle">I suggest recording short video interviews with your top customers. Here are the questions, adapted for ODF. 20-30 minutes each.</p>
+
+  <div class="card" style="border-left:3px solid var(--green);margin-bottom:24px;">
+    <h3 style="color:var(--green);margin-bottom:16px;">For Customers (Bronson, Wayne, Luka, Connor, Pranav)</h3>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;">Start the recording. At the end when you say thanks and bye, stay on and stop the recording -- then you can finish up off-camera.</p>
+    <ol>
+      <li>"Tell us a little about your business -- what you sell and how you got started in supplements."</li>
+      <li>"Before ODF, how were you handling fulfillment? What was that like?"</li>
+      <li>"What made you choose ODF over other fulfillment companies?"</li>
+      <li>"How easy was it to get set up and start selling with ODF?"</li>
+      <li>"What results have you seen since working with ODF?" <em>(revenue growth, time saved, reliability)</em></li>
+      <li>"How has ODF handled things when volume spikes -- like during a viral moment or big launch?"</li>
+      <li>"What would you say to someone on the fence about launching their own supplement brand?"</li>
+      <li>"If you had to pitch ODF in one sentence to another brand owner, what would you say?"</li>
+    </ol>
+    <p style="font-size:13px;color:var(--text-dim);margin-top:12px;"><strong>Bonus (if time):</strong> "What's one thing about ODF you didn't expect to love?" / "What's one thing you'd improve?"</p>
+  </div>
+
+  <div class="card" style="border-left:3px solid var(--blue);">
+    <h3 style="color:var(--blue);margin-bottom:16px;">For Referral Partners (e.g. Bronson as Referrer)</h3>
+    <ol>
+      <li>"Tell us who you are and what you do -- 30 seconds."</li>
+      <li>"What made you decide to start referring people to ODF?"</li>
+      <li>"How has the partnership impacted your business or your students?"</li>
+      <li>"How does ODF compare to other fulfillment options your students have tried?"</li>
+      <li>"If you had to pitch the ODF partner program to another course creator or agency owner, what would you say?"</li>
+    </ol>
+  </div>
+
+  <div class="highlight-box">
+    <p style="font-size:15px;">These case studies become the single most powerful sales asset you have. They go on the one-pager, in the outreach emails, on the website, and in the post-podcast transitions. The $0 to $200K story is the one that will close deals.</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE 15: NEXT STEPS ==================== -->
 <div class="page">
   <div class="page-label">Next Steps</div>
-  <h2>I Want Your Input</h2>
-  <p class="subtitle">Before we start executing, I want to make sure we are aligned on the direction. Here is what I need from you.</p>
+  <h2>Your Input</h2>
+  <p class="subtitle">Before we start executing, I want to make sure we are aligned.</p>
 
   <div class="card" style="border-left:3px solid var(--purple);margin-bottom:24px;">
     <h3 style="color:var(--purple);margin-bottom:12px;">Questions for Daniel & Spencer</h3>
     <ul>
-      <li><strong>Do these 5 audiences feel right?</strong> Is there anyone I am missing, or an audience you think would not work?</li>
-      <li><strong>Priority order</strong> -- I suggest going after Supplement Course Creators first (Audience 1) and DTC agencies second (Audiences 2-3). Do you agree, or would you order them differently?</li>
-      <li><strong>Case study details</strong> -- Spencer, can you send over detailed overviews of Pranav and Wayne? I want to use their stories in the outreach.</li>
-      <li><strong>Affiliate/partner program</strong> -- You mentioned the referral program is non-existent right now. I can help put together a proper affiliate one-pager with the commission structure, tiers, and onboarding steps. What are your thoughts on the terms?</li>
-      <li><strong>Any other questions from the call</strong> that you want addressed before we start?</li>
+      <li><strong>Do these 5 audiences feel right?</strong> Anyone missing, or an audience you think would not work?</li>
+      <li><strong>Priority order</strong> -- I suggest Course Creators first (Audience 1) and DTC agencies second (2-3). Agree?</li>
+      <li><strong>Podcast frame</strong> -- Does the opening script feel natural for how you want to present yourself?</li>
+      <li><strong>Case studies</strong> -- Spencer, can you send over detailed overviews of Pranav and Wayne?</li>
+      <li><strong>One-pager bullets</strong> -- Are the commission numbers and structure right? (page 13)</li>
+      <li><strong>Anything else from the call</strong> that you want addressed?</li>
     </ul>
   </div>
 
   <div class="card" style="border-left:3px solid var(--green);">
     <h3 style="color:var(--green);margin-bottom:12px;">What I Can Help Build</h3>
     <ul style="margin-bottom:0;">
-      <li><strong>Affiliate one-pager</strong> -- a clean document you can send to potential partners explaining how the program works, commission structure, and how to get started</li>
-      <li><strong>Partner onboarding packet</strong> -- everything a new partner needs to start referring (brand overview, commission tiers, tracking, support contacts)</li>
-      <li><strong>Outreach messaging</strong> -- once we agree on the audiences, I will write the email and LinkedIn sequences for each one</li>
+      <li><strong>Affiliate one-pager</strong> -- once you approve the bullets, we design and deliver it</li>
+      <li><strong>Partner onboarding packet</strong> -- everything a new partner needs to start referring</li>
+      <li><strong>Outreach messaging</strong> -- email and LinkedIn sequences for each audience</li>
+      <li><strong>Case study recordings</strong> -- we handle the editing, clips, and captions</li>
     </ul>
   </div>
 
   <div style="margin-top:40px;padding:32px;background:var(--purple-soft);border:1px solid rgba(139,92,246,0.25);border-radius:12px;text-align:center;">
     <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Let me know what you think.</p>
-    <p style="font-size:15px;color:var(--text-dim);">Happy to hop on a quick call to walk through any of this, or just reply with your thoughts and I will start building.</p>
+    <p style="font-size:15px;color:var(--text-dim);">Reply with your thoughts and we will start building.</p>
     <div style="margin-top:24px;">
       <p style="font-size:14px;color:var(--text-dim);">
         Jordan Rafealov -- <a href="mailto:jordan@dopaminedigital.io" style="color:var(--purple);">jordan@dopaminedigital.io</a><br>
