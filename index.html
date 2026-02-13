@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ODF Growth Plan — Dopamine Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0c0c14;
+  --card: #16162a;
+  --card-border: rgba(255,255,255,0.08);
+  --accent: #7c3aed;
+  --accent-glow: rgba(124, 58, 237, 0.15);
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --blue: #3b82f6;
+  --text: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --radius: 16px;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 19px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.deck { width: 100%; height: 100%; position: relative; }
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+  overflow-y: auto;
+  padding: 50px 40px 80px;
+}
+.slide.active { opacity: 1; pointer-events: auto; }
+.slide.center-v { align-items: center; }
+
+.slide::-webkit-scrollbar { width: 6px; }
+.slide::-webkit-scrollbar-track { background: transparent; }
+.slide::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.3); border-radius: 3px; }
+
+.slide-inner {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 { font-family: 'Inter', sans-serif; font-weight: 700; line-height: 1.15; }
+h1 { font-size: 52px; letter-spacing: -0.02em; margin-bottom: 16px; text-wrap: balance; }
+h2 { font-size: 44px; letter-spacing: -0.02em; margin-bottom: 16px; text-align: center; }
+h3 { font-size: 28px; margin-bottom: 12px; }
+h4 { font-size: 22px; margin-bottom: 8px; font-weight: 600; }
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.subtitle { font-size: 22px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 24px; font-weight: 400; text-align: center; }
+
+.playfair-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
+.text-amber { color: var(--amber); }
+strong { font-weight: 700; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 36px;
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+.card:hover {
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+.card-sm { padding: 24px; }
+.card-green { border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.05); }
+.card-violet { border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.06); }
+.card-amber { border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.05); }
+.card-red { border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.05); }
+.card-blue { border-color: rgba(59,130,246,0.25); background: rgba(59,130,246,0.05); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
+.bullet-list { list-style: none; padding: 0; }
+.bullet-list li {
+  padding: 10px 0 10px 28px;
+  position: relative;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 18px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.bullet-list.green li::before { background: var(--green); }
+
+.check-list { list-style: none; padding: 0; }
+.check-list li {
+  padding: 8px 0 8px 32px;
+  position: relative;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.check-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0; top: 8px;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.stat { text-align: center; padding: 28px 20px; }
+.stat .num { font-size: 48px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
+.stat .label { font-size: 16px; color: var(--text-secondary); line-height: 1.4; }
+
+.quote-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  border-radius: 2px;
+  margin: 0 auto 32px;
+}
+
+.tl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.tl-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.tl-card.tl-full { grid-column: 1 / -1; border-color: rgba(34,197,94,0.25); background: rgba(34,197,94,0.04); }
+.tl-card h4 { font-size: 18px; margin-bottom: 12px; }
+.tl-card li { font-size: 15px; color: var(--text-secondary); padding: 3px 0; line-height: 1.5; list-style: none; }
+.tl-card ul { list-style: none; padding: 0; }
+.tl-card .tl-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.tl-badge-purple { background: rgba(124,58,237,0.15); color: var(--accent); }
+.tl-badge-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
+.tl-badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+.tl-badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+.tl-card .milestone { color: var(--green); font-weight: 600; font-style: italic; }
+
+.glow-card {
+  background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(34,197,94,0.08) 100%);
+  border: 1px solid rgba(124,58,237,0.3);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(124,58,237,0.08);
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.flow-box {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+  padding: 20px 16px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.flow-arrow {
+  color: var(--accent);
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.gap-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px 0;
+}
+.gap-box {
+  text-align: center;
+  padding: 28px 32px;
+  border-radius: var(--radius);
+  min-width: 200px;
+}
+.gap-arrow {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+}
+
+.progress-container { margin-bottom: 24px; }
+.progress-bar-outer {
+  width: 100%;
+  height: 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress-bar-inner {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 600ms ease;
+}
+
+/* Nav */
+.nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(12,12,20,0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 100;
+  font-size: 15px;
+}
+.nav button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 150ms;
+}
+.nav button:hover { opacity: 0.85; }
+.nav button:disabled { opacity: 0.3; cursor: default; }
+.nav .progress-dots {
+  display: flex;
+  gap: 6px;
+}
+.nav .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: background 200ms;
+}
+.nav .dot.active { background: var(--accent); }
+
+.mb-8 { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-40 { margin-bottom: 40px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.text-center { text-align: center; }
+
+@media (max-width: 768px) {
+  .slide { padding: 32px 20px 80px; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 32px; }
+  .grid-2, .grid-3, .tl-grid { grid-template-columns: 1fr; }
+  .tl-card.tl-full { grid-column: auto; }
+  .stat .num { font-size: 36px; }
+  .gap-visual { flex-direction: column; }
+  .flow-row { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ==================== SLIDE 1: TITLE ==================== -->
+<div class="slide center-v active" data-slide="0">
+  <div class="slide-inner text-center">
+    <p class="eyebrow">Dopamine Digital x On Demand Fulfillment</p>
+    <h1 style="text-align:center;">The New Game Plan</h1>
+    <div class="section-divider"></div>
+    <p class="subtitle">We heard you. Here is the updated strategy<br>built from everything we discussed.</p>
+    <p class="text-secondary" style="text-align:center; font-size:16px; margin-top:24px;">February 2026 | Prepared for Daniel Lindsey & Spencer Livingston</p>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 2: WHAT WE HEARD ==================== -->
+<div class="slide" data-slide="1">
+  <div class="slide-inner">
+    <p class="eyebrow">What We Heard</p>
+    <h2>We Took Everything From Our Call<br>and Rebuilt the Plan</h2>
+    <div class="section-divider"></div>
+
+    <div class="quote-card mb-24">
+      <p class="playfair-quote">"We have 18 podcast recordings done. But nobody ever followed up with a single guest after the recording. That is the gap."</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-sm card-red">
+        <h4 class="text-red mb-8">What Was Missing</h4>
+        <ul class="bullet-list">
+          <li>Zero post-podcast follow-up to any of the 18 guests</li>
+          <li>No one-pager or partner packet to send after recording</li>
+          <li>No email nurture sequence after the conversation</li>
+          <li>No conversion funnel to turn guests into partners</li>
+        </ul>
+      </div>
+      <div class="card card-sm card-green">
+        <h4 class="text-green mb-8">What Is Already Working</h4>
+        <ul class="bullet-list green">
+          <li>18 podcast episodes recorded -- real conversations, real rapport</li>
+          <li>300+ customers, 90 actively selling -- proven product</li>
+          <li>Bronson ($100K/mo), Wayne ($200K/mo), Luka ($1M/mo) -- real proof</li>
+          <li>Full outreach infrastructure already live and warmed</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glow-card mt-24">
+      <h3 class="mb-8">The Fix Is Simple</h3>
+      <p class="text-secondary" style="font-size:18px;">Build the conversion funnel that turns recordings into discovery calls.<br>The product works. The proof exists. The gap is in the follow-through.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 3: THE MARKET ==================== -->
+<div class="slide" data-slide="2">
+  <div class="slide-inner">
+    <p class="eyebrow">Market Opportunity</p>
+    <h2>60,000+ Verified Prospects<br>Ready to Reach</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">We ran API-verified searches across Apollo, LinkedIn Sales Navigator, and Exa.ai. The market depth is massive.</p>
+
+    <div class="grid-2 mb-24">
+      <div class="card card-sm">
+        <div class="stat">
+          <div class="num text-accent">$68-78B</div>
+          <div class="label">US Supplement Market Size</div>
+        </div>
+      </div>
+      <div class="card card-sm">
+        <div class="stat">
+          <div class="num text-green">60,042</div>
+          <div class="label">Verified Prospects in Database</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card card-sm">
+        <h4 class="text-accent mb-8">Segment 1</h4>
+        <p style="font-size:16px; font-weight:600; margin-bottom:4px;">Supplement Brand Owners</p>
+        <p class="text-secondary" style="font-size:15px;">8,601 in Apollo. Direct ODF customers. Highest alignment.</p>
+        <div class="stat" style="padding:16px 0 0;">
+          <div class="num text-accent" style="font-size:32px;">A+</div>
+          <div class="label">Priority</div>
+        </div>
+      </div>
+      <div class="card card-sm">
+        <h4 class="text-green mb-8">Segment 2</h4>
+        <p style="font-size:16px; font-weight:600; margin-bottom:4px;">Ecom/Amazon Sellers</p>
+        <p class="text-secondary" style="font-size:15px;">22,797 verified. Each seller is a direct customer. Largest pool.</p>
+        <div class="stat" style="padding:16px 0 0;">
+          <div class="num text-green" style="font-size:32px;">A</div>
+          <div class="label">Priority</div>
+        </div>
+      </div>
+      <div class="card card-sm">
+        <h4 class="text-amber mb-8">Segments 3-5</h4>
+        <p style="font-size:16px; font-weight:600; margin-bottom:4px;">Coaches, DTC, Educators</p>
+        <p class="text-secondary" style="font-size:15px;">28,644 combined. Course creators, dropship founders, wellness coaches.</p>
+        <div class="stat" style="padding:16px 0 0;">
+          <div class="num text-amber" style="font-size:32px;">A/B+</div>
+          <div class="label">Priority</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 4: 3-CHANNEL ENGINE ==================== -->
+<div class="slide" data-slide="3">
+  <div class="slide-inner">
+    <p class="eyebrow">The Strategy</p>
+    <h2>3-Channel Outreach Engine</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">Three channels running simultaneously. Each feeds the others. Volume plus quality.</p>
+
+    <div class="grid-3 mb-24">
+      <div class="card card-sm card-violet">
+        <h4 class="text-accent mb-12">Channel 1: Cold Email</h4>
+        <p style="font-size:15px; color: var(--text-secondary); margin-bottom:16px;">Personalized emails at scale with a lead magnet that does the selling for you.</p>
+        <ul class="bullet-list" style="font-size:15px;">
+          <li><strong>100 emails/day</strong> -- 18 warmed domains already live</li>
+          <li><strong>Lead magnet:</strong> Supplement Profitability Calculator</li>
+          <li><strong>AI auto-reply</strong> handling responses 24/7</li>
+          <li><strong>Target:</strong> 40% open, 8% reply, 2% meeting</li>
+        </ul>
+      </div>
+      <div class="card card-sm card-green">
+        <h4 class="text-green mb-12">Channel 2: Podcast</h4>
+        <p style="font-size:15px; color: var(--text-secondary); margin-bottom:16px;">The premium touch. Build real relationships with high-value targets.</p>
+        <ul class="bullet-list green" style="font-size:15px;">
+          <li><strong>3 recordings/week</strong> -- reserved for top prospects</li>
+          <li><strong>Full conversion funnel:</strong> framing script, off-air pitch, one-pager, email sequence</li>
+          <li><strong>Target:</strong> 60% guest-to-discovery-call</li>
+          <li><strong>Multiplier:</strong> Each episode = 5-10 social clips</li>
+        </ul>
+      </div>
+      <div class="card card-sm card-blue">
+        <h4 class="text-accent mb-12" style="color:var(--blue);">Channel 3: LinkedIn</h4>
+        <p style="font-size:15px; color: var(--text-secondary); margin-bottom:16px;">Warm pipeline through connection requests and value-first outreach.</p>
+        <ul class="bullet-list" style="font-size:15px;">
+          <li><strong>50 connections/day</strong> via multi-account automation</li>
+          <li><strong>Lead magnet:</strong> Profitability Report PDF</li>
+          <li><strong>Sequence:</strong> Connect, value, engage, soft pitch</li>
+          <li><strong>Voice notes</strong> for Dream 100 targets</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card card-sm card-violet text-center">
+      <p style="font-size:18px; font-weight:600;">Combined steady-state: <span class="text-accent">150 touches/day</span> = <span class="text-green">3,000+/month</span> = <strong>47-63 meetings/month at scale</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 5: THE MISSING FUNNEL ==================== -->
+<div class="slide" data-slide="4">
+  <div class="slide-inner">
+    <p class="eyebrow">The Core Fix</p>
+    <h2>Post-Podcast Conversion Funnel</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">This is what was missing. Every podcast guest now goes through a structured conversion path.</p>
+
+    <div class="flow-row mb-32">
+      <div class="flow-box" style="border-color: rgba(124,58,237,0.3);">
+        <span class="text-accent" style="font-size:20px;">1</span><br>
+        Podcast Recording
+      </div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box" style="border-color: rgba(124,58,237,0.3);">
+        <span class="text-accent" style="font-size:20px;">2</span><br>
+        One-Pager Sent<br><span class="text-secondary" style="font-size:13px;">Within 24 hours</span>
+      </div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box" style="border-color: rgba(124,58,237,0.3);">
+        <span class="text-accent" style="font-size:20px;">3</span><br>
+        5-Email Sequence<br><span class="text-secondary" style="font-size:13px;">Over 14 days</span>
+      </div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box" style="border-color: rgba(34,197,94,0.3);">
+        <span class="text-green" style="font-size:20px;">4</span><br>
+        Discovery Call<br><span class="text-secondary" style="font-size:13px;">Partner overview</span>
+      </div>
+      <span class="flow-arrow">&rarr;</span>
+      <div class="flow-box" style="border-color: rgba(34,197,94,0.3);">
+        <span class="text-green" style="font-size:20px;">5</span><br>
+        Partner Activated
+      </div>
+    </div>
+
+    <div class="grid-2 mb-24">
+      <div class="card card-sm">
+        <h4 class="mb-8">Post-Recording Email Sequence</h4>
+        <ul class="check-list" style="font-size:15px;">
+          <li><strong>Email 1 (Day 1):</strong> Thank you + one-pager PDF</li>
+          <li><strong>Email 2 (Day 3):</strong> Case study -- Bronson's $100K/mo journey</li>
+          <li><strong>Email 3 (Day 7):</strong> Partner program introduction + rev-share details</li>
+          <li><strong>Email 4 (Day 10):</strong> Social proof -- Wayne, Luka + partner testimonials</li>
+          <li><strong>Email 5 (Day 14):</strong> Direct ask -- 15-min partner overview call</li>
+        </ul>
+      </div>
+      <div class="card card-sm">
+        <h4 class="mb-8">Partner Materials (Ready to Deploy)</h4>
+        <ul class="check-list" style="font-size:15px;">
+          <li><strong>One-Pager PDF:</strong> Episode recap + case studies + partner CTA</li>
+          <li><strong>Partner Packet:</strong> Commission tiers, onboarding steps, FAQ</li>
+          <li><strong>Profitability Calculator:</strong> Interactive margins tool for cold email</li>
+          <li><strong>Profitability Report:</strong> 2-page branded PDF for LinkedIn</li>
+          <li><strong>No-Show Recovery:</strong> 3-email re-engagement sequence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 6: EXISTING 18 RECORDINGS ==================== -->
+<div class="slide" data-slide="5">
+  <div class="slide-inner">
+    <p class="eyebrow">Immediate Opportunity</p>
+    <h2>18 Recordings = Untapped Gold</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">These guests already had great conversations with Daniel. They just never heard from us again. That changes now.</p>
+
+    <div class="gap-visual mb-32">
+      <div class="gap-box card-red" style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); border-radius: var(--radius);">
+        <div style="font-size:48px; font-weight:700; color: var(--red);">0%</div>
+        <div class="text-secondary" style="font-size:16px; margin-top:4px;">Current Post-Podcast<br>Conversion Rate</div>
+      </div>
+      <div class="gap-arrow">
+        Deploy Funnel<br>&rarr;
+      </div>
+      <div class="gap-box card-green" style="background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: var(--radius);">
+        <div style="font-size:48px; font-weight:700; color: var(--green);">60%+</div>
+        <div class="text-secondary" style="font-size:16px; margin-top:4px;">Target With<br>Conversion Funnel</div>
+      </div>
+    </div>
+
+    <div class="card card-sm card-green mb-24">
+      <h4 class="text-green mb-12">Projection From Existing 18 Recordings</h4>
+      <div class="grid-3" style="gap:16px;">
+        <div class="stat" style="padding:12px 0;">
+          <div class="num text-accent" style="font-size:36px;">18</div>
+          <div class="label">Recordings Done</div>
+        </div>
+        <div class="stat" style="padding:12px 0;">
+          <div class="num text-green" style="font-size:36px;">6-10</div>
+          <div class="label">Discovery Calls Expected</div>
+        </div>
+        <div class="stat" style="padding:12px 0;">
+          <div class="num text-green" style="font-size:36px;">2-4</div>
+          <div class="label">Partners Activated</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-sm text-center">
+      <p style="font-size:17px;" class="text-secondary"><strong style="color:var(--text);">Action:</strong> Follow-up emails going out to all 18 guests this week with personalized one-pagers referencing their specific episode.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 7: CASE STUDIES ==================== -->
+<div class="slide" data-slide="6">
+  <div class="slide-inner">
+    <p class="eyebrow">Proof That Sells</p>
+    <h2>Your Best Partners Are<br>Already Telling the Story</h2>
+    <div class="section-divider"></div>
+
+    <div class="grid-3 mb-24">
+      <div class="card card-sm" style="border-top: 3px solid var(--accent);">
+        <div class="stat" style="padding:0 0 16px;">
+          <div class="num text-accent" style="font-size:36px;">$100K/mo</div>
+          <div class="label">Bronson</div>
+        </div>
+        <p class="text-secondary" style="font-size:15px;">Scaled to $100K/month with ODF handling fulfillment end-to-end. Now sends referrals consistently. Teaches brand building and sells info products -- ODF freed him to focus on what he does best.</p>
+      </div>
+      <div class="card card-sm" style="border-top: 3px solid var(--green);">
+        <div class="stat" style="padding:0 0 16px;">
+          <div class="num text-green" style="font-size:36px;">$200K/mo</div>
+          <div class="label">Wayne</div>
+        </div>
+        <p class="text-secondary" style="font-size:15px;">Top account this month. Amazon ecommerce expert who needed a fulfillment partner that could keep pace with aggressive scaling. Zero stockouts, zero late shipments.</p>
+      </div>
+      <div class="card card-sm" style="border-top: 3px solid var(--amber);">
+        <div class="stat" style="padding:0 0 16px;">
+          <div class="num text-amber" style="font-size:36px;">$1M/mo</div>
+          <div class="label">Luka (Moringa Rosabella)</div>
+        </div>
+        <p class="text-secondary" style="font-size:15px;">TikTok brand doing $1M/month. When you are moving that kind of volume, you need a fulfillment partner that does not blink. ODF handles the complexity so Luka focuses on content and conversion.</p>
+      </div>
+    </div>
+
+    <div class="glow-card">
+      <p style="font-size:18px;">These case studies are built into every outreach touchpoint -- cold email sequences, one-pagers, partner packets, and post-podcast follow-ups. <strong>Real proof closes real deals.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 8: PARTNER PROGRAM ==================== -->
+<div class="slide" data-slide="7">
+  <div class="slide-inner">
+    <p class="eyebrow">Partner Channel</p>
+    <h2>One Agency Partner =<br>Multiple Brand Referrals</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">The partner channel scales faster than direct sales. One good agency relationship delivers 5-10 brand introductions.</p>
+
+    <div class="grid-2 mb-24">
+      <div class="card card-sm card-violet">
+        <h4 class="text-accent mb-12">Partner Offer Stack</h4>
+        <ul class="bullet-list" style="font-size:16px;">
+          <li><strong>25-35% of gross profit</strong> on every brand referred. Recurring. Forever.</li>
+          <li><strong>$250-500 activation bounty</strong> per new brand (paid when first order ships)</li>
+          <li><strong>Co-branded case study</strong> for their marketing</li>
+          <li><strong>White-label option</strong> at Gold tier</li>
+          <li><strong>Priority support line</strong> for partner referrals</li>
+        </ul>
+      </div>
+      <div class="card card-sm card-green">
+        <h4 class="text-green mb-12">Partner Guarantee</h4>
+        <div class="quote-card" style="margin:0; border-left-color: var(--green);">
+          <p class="playfair-quote" style="font-size:19px;">"If your referral's first order doesn't ship within 30 days, we double the activation bounty."</p>
+        </div>
+        <p class="text-secondary mt-16" style="font-size:15px;">Zero risk for the partner. They introduce, you deliver, they earn. The guarantee removes the last objection.</p>
+      </div>
+    </div>
+
+    <div class="card card-sm text-center">
+      <p style="font-size:18px;"><strong>The math:</strong> One agency partner referring 5 brands at $30K avg value = <span class="text-green" style="font-weight:700;">$150K pipeline from a single relationship</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 9: 30-DAY TIMELINE ==================== -->
+<div class="slide" data-slide="8">
+  <div class="slide-inner">
+    <p class="eyebrow">Execution Timeline</p>
+    <h2>30-Day Sprint</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">Four weeks. Clear milestones. Measurable results every step of the way.</p>
+
+    <div class="tl-grid">
+      <div class="tl-card">
+        <span class="tl-badge tl-badge-purple">Week 1 -- Deploy</span>
+        <h4>Foundation + First Outreach</h4>
+        <ul>
+          <li>Deploy conversion funnel to all 18 existing guests</li>
+          <li>Launch cold email campaigns (500 emails)</li>
+          <li>Launch LinkedIn campaigns (200 connections)</li>
+          <li>Partner materials finalized (one-pager + partner packet)</li>
+          <li>Lead magnets live (Calculator + Report)</li>
+        </ul>
+        <p class="milestone mt-16">Target: All systems live, 18 guests contacted</p>
+      </div>
+
+      <div class="tl-card">
+        <span class="tl-badge tl-badge-amber">Week 2 -- Volume</span>
+        <h4>Scale + First Results</h4>
+        <ul>
+          <li>4-6 replies expected from existing 18 guests</li>
+          <li>First discovery calls from warm replies</li>
+          <li>Next 500 contacts loaded into cold email</li>
+          <li>3 new podcast recordings from Week 1 outreach</li>
+          <li>One-pager sent within 24hrs of each recording</li>
+        </ul>
+        <p class="milestone mt-16">Target: 6 discovery calls, 1,000 emails sent</p>
+      </div>
+
+      <div class="tl-card">
+        <span class="tl-badge tl-badge-blue">Week 3 -- Optimize</span>
+        <h4>Scale + A/B Test</h4>
+        <ul>
+          <li>A/B test cold email subject lines -- pick winners</li>
+          <li>Scale Instantly to 100/day if deliverability holds</li>
+          <li>Scale LinkedIn to 50/day</li>
+          <li>Add new ICP segments to outreach</li>
+          <li>Discovery calls should hit 3-5/week</li>
+        </ul>
+        <p class="milestone mt-16">Target: 14 calls cumulative, 1,500+ emails</p>
+      </div>
+
+      <div class="tl-card">
+        <span class="tl-badge tl-badge-green">Week 4 -- Close</span>
+        <h4>Activate Partners + Report</h4>
+        <ul>
+          <li>Push discovery call follow-ups</li>
+          <li>Send partner packets to all warm prospects</li>
+          <li>Final outreach blitz on remaining segments</li>
+          <li>Compile results: calls, pipeline, partners activated</li>
+          <li>Prepare ongoing engagement proposal</li>
+        </ul>
+        <p class="milestone mt-16">Target: 20+ calls, 3-5 partners, $150K+ pipeline</p>
+      </div>
+
+      <div class="tl-card tl-full">
+        <h4 class="text-green">30-Day Targets (Combined)</h4>
+        <div class="grid-3" style="gap:16px; margin-top:12px;">
+          <div class="stat" style="padding:8px 0;">
+            <div class="num text-green" style="font-size:36px;">24+</div>
+            <div class="label">Discovery Calls</div>
+          </div>
+          <div class="stat" style="padding:8px 0;">
+            <div class="num text-accent" style="font-size:36px;">5-7</div>
+            <div class="label">Partners Activated</div>
+          </div>
+          <div class="stat" style="padding:8px 0;">
+            <div class="num text-amber" style="font-size:36px;">$450K+</div>
+            <div class="label">Pipeline Generated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 10: WHAT DANIEL NEEDS TO DO ==================== -->
+<div class="slide" data-slide="9">
+  <div class="slide-inner">
+    <p class="eyebrow">Your Role</p>
+    <h2>What We Need From You</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">We handle the outreach engine, the campaigns, the follow-ups, and the tech. Here is what we need from Daniel and Spencer.</p>
+
+    <div class="grid-2 mb-24">
+      <div class="card card-sm card-violet">
+        <h4 class="text-accent mb-12">Daniel</h4>
+        <ul class="check-list" style="font-size:16px;">
+          <li><strong>Record podcasts 3x/week</strong> -- you are already doing this</li>
+          <li><strong>Use the framing script</strong> we provide for each recording</li>
+          <li><strong>Show up to discovery calls</strong> when we book them for you</li>
+          <li><strong>Provide case study details</strong> (Bronson, Wayne, Luka, Pranav)</li>
+        </ul>
+        <p class="text-secondary mt-16" style="font-size:15px;">That is it. No outreach, no list building, no follow-ups. We handle all of that.</p>
+      </div>
+      <div class="card card-sm card-green">
+        <h4 class="text-green mb-12">Spencer</h4>
+        <ul class="check-list" style="font-size:16px;">
+          <li><strong>Send detailed overviews</strong> of Pranav and Wayne for case studies</li>
+          <li><strong>Support partner activation</strong> when referrals come in</li>
+          <li><strong>Intro call with new partners</strong> once activated</li>
+          <li><strong>Track partner referrals</strong> for commission reporting</li>
+        </ul>
+        <p class="text-secondary mt-16" style="font-size:15px;">Estimated 3-5 hours/week. Most partner ops will be automated.</p>
+      </div>
+    </div>
+
+    <div class="card card-sm text-center" style="border-color: rgba(124,58,237,0.3);">
+      <p style="font-size:18px;"><strong>Everything else is on us.</strong> Campaign management, list building, sequence optimization, inbox monitoring, podcast booking, call prep, content repurposing -- all handled by our team and AI systems.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 11: AI + INFRASTRUCTURE ==================== -->
+<div class="slide" data-slide="10">
+  <div class="slide-inner">
+    <p class="eyebrow">What Is Running Behind the Scenes</p>
+    <h2>Infrastructure Already Live</h2>
+    <div class="section-divider"></div>
+
+    <p class="subtitle mb-32">This is not starting from scratch. We have already built and deployed the outreach infrastructure for ODF. Zero new spend required.</p>
+
+    <div class="grid-2 mb-24">
+      <div class="card card-sm">
+        <h4 class="mb-12">Outreach Stack (Live)</h4>
+        <ul class="check-list" style="font-size:15px;">
+          <li><strong>18 email domains</strong> -- warmed and ready to send</li>
+          <li><strong>AI auto-reply</strong> -- handles cold email responses 24/7</li>
+          <li><strong>LinkedIn automation</strong> -- multi-account outreach engine</li>
+          <li><strong>60K+ prospect database</strong> -- API-verified contacts</li>
+          <li><strong>Email verification</strong> -- clean lists before sending</li>
+        </ul>
+      </div>
+      <div class="card card-sm">
+        <h4 class="mb-12">Intelligence Stack (Live)</h4>
+        <ul class="check-list" style="font-size:15px;">
+          <li><strong>AI lead qualification</strong> -- instant scoring on every reply</li>
+          <li><strong>Call transcription</strong> -- auto-captures every meeting</li>
+          <li><strong>Sales coaching AI</strong> -- audits discovery calls in real-time</li>
+          <li><strong>Inbox monitoring</strong> -- flags hot replies to our team</li>
+          <li><strong>Campaign analytics</strong> -- automated health monitoring</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="glow-card">
+      <h3 class="mb-8">~80% of routine work is automated</h3>
+      <p class="text-secondary" style="font-size:17px;">The human work is: writing copy (done), loading campaigns (this week), and taking discovery calls (ongoing). The machines handle everything in between.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 12: PROJECTED NUMBERS ==================== -->
+<div class="slide" data-slide="11">
+  <div class="slide-inner">
+    <p class="eyebrow">Projected Results</p>
+    <h2>Conservative 30-Day Projection</h2>
+    <div class="section-divider"></div>
+
+    <div class="grid-2 mb-24">
+      <div class="card card-sm">
+        <h4 class="mb-16">Outreach Volume</h4>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:16px;">
+          <span class="text-secondary">Cold emails sent</span>
+          <strong>2,000+</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:16px;">
+          <span class="text-secondary">LinkedIn connections</span>
+          <strong>800+</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:16px;">
+          <span class="text-secondary">Podcast invites</span>
+          <strong>130-165</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; font-size:16px;">
+          <span class="text-secondary">New recordings</span>
+          <strong>9-15</strong>
+        </div>
+      </div>
+      <div class="card card-sm">
+        <h4 class="mb-16">Conversion Results</h4>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:16px;">
+          <span class="text-secondary">Discovery calls (existing 18)</span>
+          <strong class="text-green">6-10</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:16px;">
+          <span class="text-secondary">Discovery calls (cold email)</span>
+          <strong class="text-green">8</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:16px;">
+          <span class="text-secondary">Discovery calls (LinkedIn)</span>
+          <strong class="text-green">5</strong>
+        </div>
+        <div style="display:flex; justify-content:space-between; padding:8px 0; font-size:16px;">
+          <span class="text-secondary">Discovery calls (new podcasts)</span>
+          <strong class="text-green">5</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card card-sm text-center" style="border-top: 3px solid var(--green);">
+        <div class="stat" style="padding:0;">
+          <div class="num text-green" style="font-size:42px;">24+</div>
+          <div class="label">Total Discovery Calls</div>
+        </div>
+      </div>
+      <div class="card card-sm text-center" style="border-top: 3px solid var(--accent);">
+        <div class="stat" style="padding:0;">
+          <div class="num text-accent" style="font-size:42px;">5-7</div>
+          <div class="label">Partners Activated</div>
+        </div>
+      </div>
+      <div class="card card-sm text-center" style="border-top: 3px solid var(--amber);">
+        <div class="stat" style="padding:0;">
+          <div class="num text-amber" style="font-size:42px;">$450K+</div>
+          <div class="label">Pipeline Generated</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-secondary text-center mt-24" style="font-size:14px;">Conservative estimates. Assumes 8% cold email reply rate, 5% LinkedIn reply rate, 60% post-podcast conversion. At $30K avg partner referral value.</p>
+  </div>
+</div>
+
+<!-- ==================== SLIDE 13: CLOSING ==================== -->
+<div class="slide center-v" data-slide="12">
+  <div class="slide-inner text-center">
+    <p class="eyebrow">Let's Go</p>
+    <h1 style="text-align:center;">The Machine Is Built.<br>Execution Starts Now.</h1>
+    <div class="section-divider"></div>
+    <p class="subtitle" style="max-width:680px; margin:0 auto 32px;">The market is massive. The proof exists. The tech is live.<br>The only thing that was missing was the conversion funnel -- and that is being deployed this week.</p>
+
+    <div class="glow-card" style="max-width:600px; margin:0 auto;">
+      <h3 class="mb-12">Next Steps</h3>
+      <ul class="check-list" style="text-align:left; max-width:440px; margin:0 auto; font-size:17px;">
+        <li>Follow-up emails to all 18 existing guests</li>
+        <li>Cold email + LinkedIn campaigns launching this week</li>
+        <li>First discovery calls expected within 7-10 days</li>
+        <li>Weekly progress updates every Friday</li>
+      </ul>
+    </div>
+
+    <p class="text-secondary" style="margin-top:40px; font-size:15px;">
+      Daniel: <a href="mailto:daniel@ondemandfulfillment.com" style="color:var(--accent);">daniel@ondemandfulfillment.com</a><br>
+      Spencer: <a href="mailto:spencer.livingston@ondemandfulfillment.com" style="color:var(--accent);">spencer.livingston@ondemandfulfillment.com</a><br>
+      Jordan: <a href="mailto:jordan@dopaminedigital.io" style="color:var(--accent);">jordan@dopaminedigital.io</a>
+    </p>
+    <p class="text-secondary" style="margin-top:16px; font-size:13px; opacity:0.5;">Dopamine Digital | February 2026</p>
+  </div>
+</div>
+
+</div><!-- end .deck -->
+
+<!-- NAV BAR -->
+<div class="nav">
+  <button id="prev" disabled>&larr; Back</button>
+  <div class="progress-dots" id="dots"></div>
+  <button id="next">Next &rarr;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dots = document.getElementById('dots');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+let current = 0;
+
+// Build dots
+slides.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => go(i));
+  dots.appendChild(d);
+});
+
+function go(n) {
+  slides[current].classList.remove('active');
+  dots.children[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, slides.length - 1));
+  slides[current].classList.add('active');
+  slides[current].scrollTop = 0;
+  dots.children[current].classList.add('active');
+  prev.disabled = current === 0;
+  next.disabled = current === slides.length - 1;
+}
+
+prev.addEventListener('click', () => go(current - 1));
+next.addEventListener('click', () => go(current + 1));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(current + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+});
+
+// Touch support
+let touchX = 0;
+document.addEventListener('touchstart', e => touchX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const diff = touchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) diff > 0 ? go(current + 1) : go(current - 1);
+});
+</script>
+</body>
+</html>
